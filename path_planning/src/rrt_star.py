@@ -42,7 +42,7 @@ class RRT():
         self.leafNodes = []
 
         for i in range(self.maxIter):
-            # rnd = self.get_random_point()
+            #rnd = self.get_random_point()
             rnd = self.get_random_point_from_target_list()
 
             # print "=====  random: {0},{1}".format(rnd[0], rnd[1]);
@@ -58,7 +58,7 @@ class RRT():
             # self.belowMaxDistance += 1
 
             newNode = self.steerConstrained(rnd, nind)
-            # newNode = self.steer(rnd, nind) #tests, delete
+            #newNode = self.steer(rnd, nind) #tests, delete
 
             # due to angle constraints it is possible that similar node is generated
             if newNode in self.nodeList:
@@ -66,10 +66,10 @@ class RRT():
                 continue
 
             if self.__CollisionCheck(newNode, self.obstacleList):
-                # nearinds = self.find_near_nodes(newNode)
-                # newNode = self.choose_parent(newNode, nearinds)
+                #nearinds = self.find_near_nodes(newNode) ###########################################################################################################
+                #newNode = self.choose_parent(newNode, nearinds)#####################################################################################################
                 self.nodeList.append(newNode)
-                # self.rewire(newNode, nearinds)
+                #self.rewire(newNode, nearinds)######################################################################################################################
 
                 if (newNode.cost >= self.planDistance):
                     # print("got a leaf " + str(newNode))
@@ -241,7 +241,7 @@ class RRT():
 
     def find_near_nodes(self, newNode):
         nnode = len(self.nodeList)
-        # r = 50.0 * math.sqrt((math.log(nnode) / nnode))
+        #r = 50.0 * math.sqrt((math.log(nnode) / nnode))
         r = self.expandDis * 3.0
         dlist = [(node.x - newNode.x) ** 2 +
                  (node.y - newNode.y) ** 2 for node in self.nodeList]

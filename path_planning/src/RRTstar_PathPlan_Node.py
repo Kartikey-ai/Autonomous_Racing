@@ -47,7 +47,7 @@ class RRTstar_PathPlan_Node:
            # self.world_frame = "world"
            # self.world_frame = "/map"
            #self.world_frame = self.odometry_topic
-           self.world_frame = 'velodyne'
+           self.world_frame = 'odom_ground_truth'
 
         waypointsFrequency = rospy.get_param('~desiredWaypointsFrequency', 5)
         self.waypointsPublishInterval = 1.0 / waypointsFrequency
@@ -209,7 +209,7 @@ class RRTstar_PathPlan_Node:
                     # print delaunayEdges
 
                     newWaypoints = self.getWaypointsFromEdges(filteredBestBranch, delaunayEdges)
-                    #print(newWaypoints)
+                    print(newWaypoints)
                 # else:
                 #     print "newWaypoints from filteredBestBranch", newWaypoints
                 #     newWaypoints = [(node.x, node.y) for node in filteredBestBranch]
