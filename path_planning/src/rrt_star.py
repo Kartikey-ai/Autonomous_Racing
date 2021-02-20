@@ -43,11 +43,11 @@ class RRT():
 
         for i in range(self.maxIter):
             #rnd = self.get_random_point()
-            rnd = self.get_random_point_from_target_list()
+            rnd = self.get_random_point_from_target_list() # ranom point around the cone. In a circle around the cone.
 
             # print "=====  random: {0},{1}".format(rnd[0], rnd[1]);
 
-            nind = self.GetNearestListIndex(self.nodeList, rnd)
+            nind = self.GetNearestListIndex(self.nodeList, rnd) # Closest node tothe goal random point
 
             nearestNode = self.nodeList[nind]
             # print("nearestNode: " + str(nearestNode))
