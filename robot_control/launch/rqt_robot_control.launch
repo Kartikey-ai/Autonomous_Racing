@@ -5,6 +5,6 @@
   <node pkg="robot_control" name="twist_to_ackermannDrive" type="twist_to_ackermannDrive.py" args="twistToAckermannDrive:=eufsa_control/teleop_vel_out" />
   
   <!-- start rqt robot steering module -->
-  <node pkg="rqt_robot_steering" name="rqt_robot_steering" type="rqt_robot_steering" />
+  <!-- <node pkg="rqt_robot_steering" name="rqt_robot_steering" type="rqt_robot_steering" /> -->
  
 </launch>

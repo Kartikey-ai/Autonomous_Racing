@@ -99,7 +99,7 @@ def do_euclidian_clustering(cloud):
 
         cone_clusters.append(x/len(indices))
         cone_clusters.append(y/len(indices))
-        #print(cone_clusters)
+        print(cone_clusters)
         #print(color_cluster_point_list) 
         #cone.x = x/len(indices)     
         #cone.y = y/len(indices)

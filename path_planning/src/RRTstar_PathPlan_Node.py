@@ -112,9 +112,9 @@ class RRTstar_PathPlan_Node:
         self.carPosYaw = 0
 
         ########################---- Car position and Yaw for Practical-------####################
-        #self.carPosX = odometry.pose.pose.position.x
-        #self.carPosY = odometry.pose.pose.position.y
-        #self.carPosYaw = yaw
+        # self.carPosX = odometry.pose.pose.position.x
+        # self.carPosY = odometry.pose.pose.position.y
+        # self.carPosYaw = yaw
 
         #print "Estimated processing odometry callback: {0} ms".format((time.time() - start)*1000)
 
@@ -145,7 +145,7 @@ class RRTstar_PathPlan_Node:
 
         # print "map size: {0}".format(len(self.map.cones));
 
-        frontConesDist = 10 #12
+        frontConesDist = 12 #12
         frontCones = self.getFrontConeObstacles(self.map, frontConesDist)
         # frontCones = [] # empty for tests
 
@@ -224,7 +224,7 @@ class RRTstar_PathPlan_Node:
                 # else:
                 #     print "newWaypoints from filteredBestBranch", newWaypoints
                     newWaypoints = [(node.x, node.y) for node in filteredBestBranch]
-                    #print(newWaypoints)
+                    print(newWaypoints)
                 # print "find waypoints time: {0} ms".format((time.time() - findWaypointsStartTime) * 1000)
 
                 if newWaypoints:
