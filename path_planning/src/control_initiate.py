@@ -1,7 +1,8 @@
 #! /usr/bin/env python3
 
 import rospy
-from pure_pursuit import Pure_pursuit
+# from pure_pursuit import Pure_pursuit
+from pure_pursuit_planner import Pure_pursuit
 
 def main():
     rospy.init_node("pure_pursuit", anonymous= True)

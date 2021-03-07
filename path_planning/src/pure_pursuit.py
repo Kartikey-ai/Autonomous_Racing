@@ -3,6 +3,7 @@
 '''
 author Kartikey vishnu
        Kartikey-ai(TDR-SDC)
+This is working fine but makung another script to work with the output of the path planning
 '''
 
 import rospy
@@ -198,3 +199,28 @@ class Pure_pursuit:
             markerArray.markers.append(newWaypointsMarker)
 
         self.waypointsVisualPub.publish(markerArray)    
+
+
+###########  Used in pure pursuit planner 
+    # def get_lookahead_dist(self, path_points):
+        
+    #     focussed_path = []
+    #     for interX, interY in path_points:
+    #         if interX*self.dot_product > self.carPosX*self.dot_product:
+    #             focussed_path.append()
+    #             ind = self.path_points.index((interX, interY))
+    #             #use ind and ind+1 or +3 to make pints between them
+    #             # or make a complete list of all valid points and reiterate among it for a valid point 
+    #             nextinterX, nextinterY = self.path_points[ind + 1]
+    #             a = (interX**2) - (2*self.carPosX*interX) + (interY*interY) - (2*self.carPosY*interY) - self.lookahead_dist
+    #             b = (2*interx*nextinterX) - (2*self.carPosX*interX) - (2*self.carPosX*nextinterX) + (2*nextinterY*interY) - (2*self.carPosY*interY) -(2*self.carPosY*nextinterY) + (self.carPosY*self.carPosY) + (self.carPosX*self.carPosX) - (2*self.lookahead_dist)
+    #             c = (nextinterX*nextinterX) + (nextinterY*nextinterY) + (self.carPosY*self.carPosY) + (self.carPosX*self.carPosX) - (2*self.carPosX*nextinterX) - (2*self.carPosY*nextinterY) - self.lookahead_dist
+                
+    #             m_root = self.equationroots(a, b, c)
+                
+    #             lookahead_x = (nextinterX + (m_root*interX))/(1 + m_root)
+    #             lookahead_y = (nextinterY + (m_root*interY))/(1 + m_root)
+
+    #             return 
+    #             ###IMplement the ratio of midpoint to find lookahead point
+
