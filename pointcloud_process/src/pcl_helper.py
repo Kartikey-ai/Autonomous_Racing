@@ -209,3 +209,4 @@ def get_color_list(cluster_count):
         for i in xrange(len(get_color_list.color_list), cluster_count):
             get_color_list.color_list.append(random_color_gen())
     return get_color_list.color_list
+    

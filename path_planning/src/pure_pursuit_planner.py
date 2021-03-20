@@ -16,6 +16,7 @@ from nav_msgs.msg import Odometry
 # Path points for navigation
 from geometry_msgs.msg import PoseStamped
 from geometry_msgs.msg import Twist  
+from ackermann_msgs.msg import AckermannDriveStamped
 
 # For odometry message
 from tf.transformations import euler_from_quaternion
@@ -45,9 +46,11 @@ class Pure_pursuit:
         
         # rospy.Subscriber('path_segment', Path, self.point_of_track)
         rospy.Subscriber('path_segment', Path, self.angle_pred)
+        rospy.Subscriber('nav', AckermannDriveStamped, self.vel_callback)
         # rospy.Subscriber('path_segment', PoseStamped, self.angle_pred)
         rospy.Subscriber('robot_control/odom', Odometry, self.odometry_callback)
         self.pub = rospy.Publisher("cmd_vel", Twist, queue_size = 1)
+        self.steeringpub = rospy.Publisher("steering_angle", Twist, queue_size = 1)
         self.waypointsVisualPub = rospy.Publisher("/visual/waypoints", MarkerArray, queue_size=1)
         self.filteredBranchVisualPub = rospy.Publisher("/visual/filtered_tree_branch", Marker, queue_size=1)
    
@@ -70,7 +73,9 @@ class Pure_pursuit:
         orientation_q = odometry.pose.pose.orientation
         orientation_list = [orientation_q.x, orientation_q.y, orientation_q.z, orientation_q.w]
         (self.roll, self.pitch, self.carPosYaw)  = euler_from_quaternion(orientation_list)                 
-        self.linear_vel = 2.0 #np.sqrt((odometry.twist.twist.linear.x)**2 + (odometry.twist.twist.linear.y)**2)
+        
+        # ###########-------------------May use it when vel_callback is not there----------------###########
+        # self.linear_vel = 2.0 #np.sqrt((odometry.twist.twist.linear.x)**2 + (odometry.twist.twist.linear.y)**2)  
         
         # DOne to take rear point as reference point
         self.carPosX = self.carPosX - behindDist * headingVector[0]
@@ -79,9 +84,17 @@ class Pure_pursuit:
         
     #     self.path_points = path.poses
     #     print(self.path_points)
-            
+
+    def vel_callback(self, vel):
+        self.linear_vel = vel.drive.speed
+        print("Current vel", self.linear_vel)    
     
     def angle_pred(self, pathss):
+
+        if self.linear_vel == 0.0:
+            self.linear_vel = 0.1
+            # use return when actual planning is used
+            #return
                 
         # path = [(2.0, 0.0), (4.0, 0.0), (6.0, 0.0), (8.0, 0.0), (10.0, 0.1), (13.0, 0.1), (15.0, 0.2), (17.0, 0.3), (18.0, 0.5), (21.0, 1.5), (24.0, 3.0), (28.0, 5.5), (32.0, 2.8), (34.0, 2.0)] # (20.0, 1.0),
         path = [(2.0, 0.0), (4.0, 0.0), (6.0, 0.0), (8.0, 0.0), (10.0, 0.1), (13.0, 0.1), (15.0, 0.7), (17.0, 0.8), (18.0, 1.3), (21.0, 2.0), (24.0, 3.5), (28.0, 6.0), (32.0, 2.8), (34.0, 2.0)] # (20.0, 1.0),
@@ -206,25 +219,32 @@ class Pure_pursuit:
                 msg = Twist()
 
                 #Publishing the linear velocity and steering angle values
-                msg.linear.x = 2.0/math.sqrt(2)
-                msg.linear.y = 2.0/math.sqrt(2)
+                msg.linear.x = self.linear_vel/math.sqrt(2)
+                msg.linear.y = self.linear_vel/math.sqrt(2)
                 msg.linear.z = 0.0
                 msg.angular.x = 0.0
                 msg.angular.y = 0.0
                 msg.angular.z = self.steering_angle
                 
                 self.pub.publish(msg)
+                self.steeringpub.publish(msg)
+
             else:
                 print("--------------------------------------------------------------REMOVED Bcoz our car has crossed it--------------------------------------------------------")
                 prev_X, prev_Y = interX, interY
                 self.path_points.remove((interX, interY))    
 
-            if len(self.path_points) == 2:
-                self.linear_vel = 1
-            if len(self.path_points) == 1:
-                self.linear_vel = 0.3
-            if len(self.path_points) == 0:
-                self.linear_vel = 0.0                                    
+            # if len(self.path_points) == 2:
+            #     self.linear_vel = 1
+            # if len(self.path_points) == 1:
+            #     self.linear_vel = 0.3
+            # if len(self.path_points) == 0:
+            #     self.linear_vel = 0.0     
+                """THink about the end wherein the car is about to reach the goal point. 
+                   Linear, angular velocity and lookahead mechanism may change to what was done previously.
+                   Also see how multiple path may be integrated to it when published from path planning.
+                   for later half you can use what you did in point cloud process file to send list of cones 
+                   and unpacked it in RRTstar.py. Same list can be used in here. """                               
 
 
     def getHeadingVector(self):
