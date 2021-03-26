@@ -22,7 +22,7 @@ class Pid:
         self.kd = 0.01
         self.kp_vel = 0.45 # 42
         self.kd_vel = 0.5 #0.0
-        self.max_velocity = 3 # Ref velocity
+        self.max_velocity = 12.0 # Ref velocity
         self.ki = 0.1   #0.0
         self.ki_vel = 0.00 #0.1 
         self.servo_offset = 18.0*math.pi/180
@@ -32,6 +32,7 @@ class Pid:
         # self.vel_input = 1.0
         self.speed_reducer = 3 # reduces speed by this factor
         self.linear_vel = 0 # current vel
+        self.min_vel = 1.7
 
     def control(self, data):
         # global velocity2
@@ -43,6 +44,8 @@ class Pid:
         error = abs(self.getheadingerror(data, self.max_velocity, self.speed_reducer))#5*data.pid_error # change to cte + heading ------------------------------------------------------------------------------
         # error = math.tan(data.angular.z)
         target_vel = self.max_velocity - error
+        if target_vel < self.min_vel:
+            target_vel = self.min_vel
         print("Reduced Heading Error", error)
         print("Target_vel", target_vel)
 

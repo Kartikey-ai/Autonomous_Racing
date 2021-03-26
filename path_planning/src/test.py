@@ -37,3 +37,9 @@ lil = [(1,2), (4,5)]
 print(lil[0])
 node = lil[0]
 print(node[0])
+
+print("---------------------------------end -------------------------------")
+x_axisd = [3.0, 1.0, 0.0]
+y_axisd = [1.0, 0.0, 0.0]
+cross = np.cross(x_axisd, y_axisd) 
+print("cross", cross)
