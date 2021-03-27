@@ -1,4 +1,4 @@
-# RRT star with multiple remote goals.
+# RRT star with multiple remote goals and Pure Pursuit with PID controllers.
 
 This repository contains package with code implementation of RRT star-based path planning algorithm for finding out a suitable path between the cones.
 
@@ -16,8 +16,18 @@ We just use LIDAR data to mark each cones with  a coordinate and covert each coo
 - coneObstacleSize = 0.5 m - size of obstacles derived from cone position
 - coneTargetsDistRatio = 0.5 - ratio to frontConesDist for deriving remote cone goals
 
-### Commands 
+### Commands (For generating suitable path)
 - roslaunch eufs_gazebo small_track.launch 
 - roslaunch robot_control robot_control.launch 
 - rosrun pointcloud_process final_script.py
 - roslaunch path_planning initiation.launch
+
+# Control
+Pure pursuit and PID controllers is used for Formula student driverless.
+
+### Commands (Fixed waypoints for controls)
+- roslaunch eufs_gazebo small_track.launch
+- rosrun path_planning control_initiate.py
+- rosrun path_planning control_listpath.py
+- rosrun path_planning pid_launcher.py
+   
