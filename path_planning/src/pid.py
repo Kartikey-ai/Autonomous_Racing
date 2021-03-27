@@ -20,11 +20,11 @@ class Pid:
 
         self.kp = 10.
         self.kd = 0.01
-        self.kp_vel = 0.45 # 42
-        self.kd_vel = 0.5 #0.0
+        self.kp_vel = 0.3 # 42
+        self.kd_vel = 0.0 #0.0
         self.max_velocity = 12.0 # Ref velocity
         self.ki = 0.1   #0.0
-        self.ki_vel = 0.00 #0.1 
+        self.ki_vel = 0.0 #0.1 
         self.servo_offset = 18.0*math.pi/180
         self.prev_error = 0.0
         # self.error = 0.0
