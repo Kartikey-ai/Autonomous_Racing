@@ -23,7 +23,9 @@ We just use LIDAR data to mark each cones with  a coordinate and covert each coo
 - roslaunch path_planning initiation.launch
 
 # Control
-Pure pursuit and PID controllers is used for Formula student driverless.
+Pure pursuit and PID controllers are used in this autonomous stack.
+Pure pusuit is a lateral controller and is suitable for our problem statement. It suitable for high speed than other controllers like stanley which gives another reason for it to be chosen. PID is a longitudnal controller which is tries to maintain the target velocity given to it. 
+Thus we need another script for velocity profile generation. Instantaneous velocity on the track is chosen to be a function of yaw rate which is itself a function of longitudnal velocity and steering angle. Further parameter tuning can be done for better results.     
 
 ### Commands (Fixed waypoints for controls)
 - roslaunch eufs_gazebo small_track.launch
