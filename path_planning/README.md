@@ -37,7 +37,7 @@ Thus we need another script for velocity profile generation. Instantaneous veloc
 
 
 
-https://user-images.githubusercontent.com/67441175/125802857-9a407f06-1d96-4428-ab55-076ce61c1c51.mp4
+https://user-images.githubusercontent.com/67441175/125811449-51fa1514-7c81-4ae2-b92e-f3398b9de248.mp4
 
 
 
