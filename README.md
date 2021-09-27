@@ -6,6 +6,19 @@ ROS/Gazebo simulation packages for driverless FSAE vehicles.
 
 ![simulation](https://eufs.eusa.ed.ac.uk/wp-content/uploads/2018/05/eufsa-sim.jpg)
 
+
+### Simulation Video for Path Planning
+
+
+https://user-images.githubusercontent.com/67441175/125800769-db53241a-ecb6-4888-b08e-d9a2db8d7ade.mp4
+
+
+### Simulation Video for Controls
+
+
+
+https://user-images.githubusercontent.com/67441175/125811449-51fa1514-7c81-4ae2-b92e-f3398b9de248.mp4
+
 ### Contents
 1. [Install Prerequisites](#requirements)
 2. [Compiling and running](#compiling)
@@ -55,21 +68,6 @@ Now you can finally run our kickass simulation!!
 
 An easy way to control the car is via
 ```roslaunch robot_control rqt_robot_control.launch```
-
-### Simulation Video for Path Planning
-
-
-https://user-images.githubusercontent.com/67441175/125800769-db53241a-ecb6-4888-b08e-d9a2db8d7ade.mp4
-
-
-### Simulation Video for Controls
-
-
-
-https://user-images.githubusercontent.com/67441175/125811449-51fa1514-7c81-4ae2-b92e-f3398b9de248.mp4
-
-
-
 
 
 ### 3. Additional sensors <a name="sensors"></a>
