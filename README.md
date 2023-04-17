@@ -13,6 +13,8 @@ ROS/Gazebo simulation packages for driverless FSAE vehicles.
 
 https://user-images.githubusercontent.com/67441175/232579291-7a9a062f-2249-4011-8452-ed8275c6c5aa.mp4
 
+https://github.com/Kartikey-ai/Autonomous_Racing/blob/master/Path%20Planning.mp4
+
 
 
 
